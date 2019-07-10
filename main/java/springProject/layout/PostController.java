@@ -18,45 +18,33 @@ import springProject.infra.PostService;
 public class PostController {
 
 	private PostService postService;
-	
+
 	@Autowired
 	public void setPostService(PostService postService) {
 		this.postService = postService;
 	}
-	
-	@RequestMapping(path = "myapp/posts",
-			method = RequestMethod.GET,
-			produces = MediaType.APPLICATION_JSON_VALUE
-			)
+
+	@RequestMapping(path = "myapp/posts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public PostBoundry[] getPosts(@RequestBody UserBoundry userBoundry) {
 		UserEntity user = userBoundry.convertToEntity();
-		PostBoundry[] posts = 
-		this.postService.getPosts(user).stream().map(PostBoundry::new)
+		PostBoundry[] posts = this.postService.getPosts(user).stream().map(PostBoundry::new)
 				.collect(Collectors.toList()).toArray(new PostBoundry[0]);
 		System.out.println(posts);
 		return posts;
 	}
-	
-	@RequestMapping(path = "myapp/newPost",
-			method = RequestMethod.POST,
-			produces = MediaType.APPLICATION_JSON_VALUE
-			)
+
+	@RequestMapping(path = "myapp/newPost", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public PostBoundry createPost(@RequestBody PostBoundry postBoundry) {
 		PostEntiy post = null;
 		post = this.postService.newPost(postBoundry.convertToEntity());
 		System.out.println(post);
 		return new PostBoundry(post);
 	}
-	
-	
-	
-	@RequestMapping(path = "myapp/posts/{key}",
-			method = RequestMethod.GET,
-			produces = MediaType.APPLICATION_JSON_VALUE
-			)
+
+	@RequestMapping(path = "myapp/posts/{key}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public PostBoundry getPostById(@PathVariable("key") Long key) {
 		PostBoundry post = null;
-		post = new PostBoundry(postService.getById(key).orElseThrow(()->new RuntimeException("in serviece")));
+		post = new PostBoundry(postService.getById(key).orElseThrow(() -> new RuntimeException("in serviece")));
 		return post;
 	}
 

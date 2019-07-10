@@ -9,37 +9,35 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 public class PostEntiy implements SpringDataUtil<Long> {
 
 	private String title;
 	private String author;
-	private UserEntity user;
+	private Long userId;
 	private Date creationTime;
 	private String content;
 	private Long id;
-	
+
 	public PostEntiy() {
 	}
 
-	public PostEntiy(String title, String author, UserEntity user, Date creationTime, String content) {
+	public PostEntiy(String title, String author, Long userId, Date creationTime, String content) {
 		this.title = title;
 		this.author = author;
-		this.user = user;
+		this.userId = userId;
 		this.creationTime = creationTime;
 		this.content = content;
 	}
 
-
 	public Long getKey() {
 		return this.id;
 	}
-	
+
 	@Override
 	public void setKey(Long key) {
 		this.id = key;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -56,12 +54,12 @@ public class PostEntiy implements SpringDataUtil<Long> {
 		this.author = author;
 	}
 
-	public UserEntity getUser() {
-		return user;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser(UserEntity user) {
-		this.user = user;
+	public void setUser(Long userId) {
+		this.userId = userId;
 	}
 
 	public Date getCreationTime() {
@@ -82,11 +80,8 @@ public class PostEntiy implements SpringDataUtil<Long> {
 
 	@Override
 	public String toString() {
-		return "PostEntiy [title=" + title + ", author=" + author + ", user=" + user + ", creationTime=" + creationTime
-				+ ", content=" + content + "]";
+		return "PostEntiy [title=" + title + ", author=" + author + ", userId=" + userId + ", creationTime="
+				+ creationTime + ", content=" + content + "]";
 	}
-	
-	
-	
-	
+
 }
