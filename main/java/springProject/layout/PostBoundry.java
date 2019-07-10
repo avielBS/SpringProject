@@ -10,24 +10,27 @@ public class PostBoundry {
 
 	private String title;
 	private String author;
-	private UserEntity user;
+	private UserBoundry user;
 	private String content;
+	private Long id;
 	
 	public PostBoundry() {
 	}
 
-	public PostBoundry(String title, String author, UserEntity user, String content) {
+	public PostBoundry(String title, String author, UserBoundry user, String content) {
 		this.title = title;
 		this.author = author;
 		this.user = user;
 		this.content = content;
+		this.id=null;
 	}
 	
 	public PostBoundry(PostEntiy postEntiy) {
 		this.title = postEntiy.getTitle();
 		this.author = postEntiy.getAuthor();
-		this.user = postEntiy.getUser();
+		this.user = new UserBoundry(postEntiy.getUser());
 		this.content = postEntiy.getContent();
+		this.id = postEntiy.getKey();
 	}
 	
 	public PostEntiy convertToEntity() {
@@ -37,7 +40,8 @@ public class PostBoundry {
 		entity.setCreationTime(new Date());
 		entity.setContent(this.content);
 		entity.setTitle(this.title);
-		entity.setUser(this.user);
+		entity.setUser(this.user.convertToEntity());
+		entity.setKey(this.id);
 		
 		return entity;
 	}
@@ -46,6 +50,12 @@ public class PostBoundry {
 		return title;
 	}
 
+	public Long getKey() {
+		return id;
+	}
+	public void setKey(Long key) {
+		this.id = key;
+	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -58,11 +68,11 @@ public class PostBoundry {
 		this.author = author;
 	}
 
-	public UserEntity getUser() {
+	public UserBoundry getUser() {
 		return user;
 	}
 
-	public void setUser(UserEntity user) {
+	public void setUser(UserBoundry user) {
 		this.user = user;
 	}
 
