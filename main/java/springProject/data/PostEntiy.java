@@ -9,6 +9,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Entity
+@Table(name="POSTS")
 public class PostEntiy implements SpringDataUtil<Long> {
 
 	private String title;
@@ -29,6 +31,9 @@ public class PostEntiy implements SpringDataUtil<Long> {
 		this.content = content;
 	}
 
+	@Override
+	@Id
+	@Column(name="ID")
 	public Long getKey() {
 		return this.id;
 	}
@@ -58,10 +63,11 @@ public class PostEntiy implements SpringDataUtil<Long> {
 		return userId;
 	}
 
-	public void setUser(Long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getCreationTime() {
 		return creationTime;
 	}

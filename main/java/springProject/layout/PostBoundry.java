@@ -38,7 +38,7 @@ public class PostBoundry {
 		entity.setCreationTime(new Date());
 		entity.setContent(this.content);
 		entity.setTitle(this.title);
-		entity.setUser(this.userId);
+		entity.setUserId(this.userId);
 		entity.setKey(this.id);
 
 		return entity;

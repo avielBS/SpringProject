@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import springProject.dao.EnhancedPostDao;
 import springProject.data.PostEntiy;
 
-@Repository
+// @Repository
 public class MemoryPostDao implements EnhancedPostDao<Long> {
 
 	private List<PostEntiy> posts;
