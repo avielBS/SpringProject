@@ -2,25 +2,47 @@ package springProject.infra;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Optional;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import springProject.dao.EnhancedPostDao;
+import springProject.dao.PostDao;
 import springProject.data.PostEntiy;
 import springProject.data.UserEntity;
 
 @Service
 public class PostServiceImpl implements PostService{
+	
+	private PostDao<Long> postsDao;
 
+	@Autowired
+	public PostServiceImpl(PostDao<Long> postsDao) {
+		this.postsDao = postsDao;
+	}
+	
 	@Override
 	public List<PostEntiy> getPosts(UserEntity user) {
 		//search in database for all user post
-		return  IntStream.range(1, 11).mapToObj(i->new PostEntiy("title"+i,
-				"author"+i,
-				new UserEntity(),
-				new Date(),
-				"content"+i)).collect(Collectors.toList());
+		return  this.postsDao.readAll();
+	}
+
+	@Override
+	public void update(PostEntiy post) {
+		this.postsDao.update(post);
+	}
+
+	@Override
+	public Optional<PostEntiy> getById(Long key) {
+		return this.postsDao.readById(key);
+	}
+
+	@Override
+	public PostEntiy newPost(PostEntiy post) {
+		post.setCreationTime(new Date());
+		return this.postsDao.create(post);
 	}
 
 }

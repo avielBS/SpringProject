@@ -2,13 +2,22 @@ package springProject.data;
 
 import java.util.Date;
 
-public class PostEntiy {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+
+public class PostEntiy implements SpringDataUtil<Long> {
 
 	private String title;
 	private String author;
 	private UserEntity user;
 	private Date creationTime;
 	private String content;
+	private Long id;
 	
 	public PostEntiy() {
 	}
@@ -21,6 +30,16 @@ public class PostEntiy {
 		this.content = content;
 	}
 
+
+	public Long getKey() {
+		return this.id;
+	}
+	
+	@Override
+	public void setKey(Long key) {
+		this.id = key;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
