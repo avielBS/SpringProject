@@ -16,10 +16,10 @@ import springProject.data.UserEntity;
 @Service
 public class PostServiceImpl implements PostService{
 	
-	private PostDao<Long> postsDao;
+	private EnhancedPostDao<Long> postsDao;
 
 	@Autowired
-	public PostServiceImpl(PostDao<Long> postsDao) {
+	public PostServiceImpl(EnhancedPostDao<Long> postsDao) {
 		this.postsDao = postsDao;
 	}
 	
