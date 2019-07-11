@@ -83,7 +83,7 @@ public class UserBoundry {
 		UserEntity entity = new UserEntity();
 		
 		entity.setAvatar(this.avatar);
-		entity.setDate(new Date());
+		entity.setavailableFrom(new Date());
 		entity.setEmail(this.email);
 		entity.setName(this.name);
 		entity.setPassword(this.password);
