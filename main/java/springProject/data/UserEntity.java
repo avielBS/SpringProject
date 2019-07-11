@@ -2,15 +2,24 @@ package springProject.data;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
+@Table(name="USERS")
 public class UserEntity {
 
 	private String name;
-	private Date date;
+	private Date availableFrom;
 	private String username;
 	private String password;
 	private String email;
 	private String avatar;
+	private String id;
 	
 	public UserEntity() {
 	}
@@ -18,11 +27,12 @@ public class UserEntity {
 	public UserEntity(String name, Date date, String username, String password, String email, String avatar) {
 		super();
 		this.name = name;
-		this.date = date;
+		this.availableFrom = date;
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.avatar = avatar;
+		this.id=null;
 	}
 
 	public String getName() {
@@ -31,11 +41,12 @@ public class UserEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getDate() {
-		return date;
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getavailableFrom() {
+		return availableFrom;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setavailableFrom(Date date) {
+		this.availableFrom = date;
 	}
 	public String getUsername() {
 		return username;
@@ -61,9 +72,18 @@ public class UserEntity {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
+	@Id
+	@Column(name="ID")
+	public String getId() {
+		return this.email;
+	}
+	public void setId(String email) {
+		this.email=email;
+	}
+	
 	@Override
 	public String toString() {
-		return "UserEntity [name=" + name + ", date=" + date + ", username=" + username + ", password=" + password
+		return "UserEntity [name=" + name + ", date=" + availableFrom + ", username=" + username + ", password=" + password
 				+ ", email=" + email + ", avatar=" + avatar + "]";
 	}
 	

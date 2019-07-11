@@ -14,7 +14,7 @@ import springProject.dao.EnhancedUserDao;
 import springProject.dao.UserDao;
 import springProject.data.UserEntity;
 
-@Repository
+//@Repository
 public class MemoryUserDao implements EnhancedUserDao{
 
 	private List<UserEntity> users;
@@ -100,7 +100,7 @@ public class MemoryUserDao implements EnhancedUserDao{
 	}
 
 	@Override
-	public void deleteByKey(Long key) {
+	public void deleteByKey(String email) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -14,5 +14,5 @@ public interface EnhancedUserDao extends UserDao {
 
 	public List<UserEntity> readMessageAvaiable(Date fromDate, Date toDate, int size, int page);
 
-	public void deleteByKey(Long key);
+	public void deleteByKey(String email);
 }
