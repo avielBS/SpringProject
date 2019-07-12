@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import springProject.dao.EnhancedPostDao;
+import springProject.dao.EnhancedUserDao;
 import springProject.data.PostEntiy;
 import springProject.data.UserEntity;
 
@@ -15,10 +16,12 @@ import springProject.data.UserEntity;
 public class PostServiceImpl implements PostService {
 
 	private EnhancedPostDao<Long> postsDao;
+	private EnhancedUserDao userDao;
 
 	@Autowired
-	public PostServiceImpl(EnhancedPostDao<Long> postsDao) {
+	public PostServiceImpl(EnhancedPostDao<Long> postsDao , EnhancedUserDao userDao) {
 		this.postsDao = postsDao;
+		this.userDao = userDao;
 	}
 
 	@Override
@@ -44,8 +47,14 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public PostEntiy newPost(PostEntiy post) {
-		post.setCreationTime(new Date());
-		return this.postsDao.create(post);
+		
+		UserEntity user = this.userDao.readById(post.getUserId()).orElseThrow(()->new RuntimeException("this post not belong to users"));
+		if(user!=null) {
+			post.setCreationTime(new Date());
+			return this.postsDao.create(post);
+		}
+		else
+			throw new RuntimeException("this post not belong to users");
 	}
 
 }
