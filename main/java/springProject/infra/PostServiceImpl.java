@@ -19,7 +19,7 @@ public class PostServiceImpl implements PostService {
 	private EnhancedUserDao userDao;
 
 	@Autowired
-	public PostServiceImpl(EnhancedPostDao<Long> postsDao , EnhancedUserDao userDao) {
+	public PostServiceImpl(EnhancedPostDao<Long> postsDao, EnhancedUserDao userDao) {
 		this.postsDao = postsDao;
 		this.userDao = userDao;
 	}
@@ -47,14 +47,19 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public PostEntiy newPost(PostEntiy post) {
-		
-		UserEntity user = this.userDao.readById(post.getUserId()).orElseThrow(()->new RuntimeException("this post not belong to users"));
-		if(user!=null) {
+
+		UserEntity user = this.userDao.readById(post.getUserId())
+				.orElseThrow(() -> new RuntimeException("this post not belong to users"));
+		if (user != null) {
 			post.setCreationTime(new Date());
 			return this.postsDao.create(post);
-		}
-		else
+		} else
 			throw new RuntimeException("this post not belong to users");
+	}
+
+	@Override
+	public void deleteById(Long key) {
+		this.postsDao.deleteByKey(key);
 	}
 
 }

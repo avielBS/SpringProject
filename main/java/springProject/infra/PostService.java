@@ -16,4 +16,6 @@ public interface PostService {
 	public Optional<PostEntiy> getById(Long key);
 
 	public PostEntiy newPost(PostEntiy post);
+
+	public void deleteById(Long key);
 }

@@ -4,7 +4,6 @@ import java.util.Date;
 
 import springProject.data.UserEntity;
 
-
 public class UserBoundry {
 
 	private String name;
@@ -12,7 +11,7 @@ public class UserBoundry {
 	private String password;
 	private String email;
 	private String avatar;
-	
+
 	public UserBoundry() {
 	}
 
@@ -32,7 +31,7 @@ public class UserBoundry {
 		this.password = entity.getPassword();
 		this.name = entity.getName();
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -78,19 +77,18 @@ public class UserBoundry {
 		return "UserBoundry [name=" + name + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", avatar=" + avatar + "]";
 	}
-	
+
 	public UserEntity convertToEntity() {
 		UserEntity entity = new UserEntity();
-		
+
 		entity.setAvatar(this.avatar);
 		entity.setavailableFrom(new Date());
 		entity.setEmail(this.email);
 		entity.setName(this.name);
 		entity.setPassword(this.password);
 		entity.setUsername(this.username);
-		
+
 		return entity;
 	}
-	
-	
+
 }
