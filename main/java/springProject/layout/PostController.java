@@ -57,4 +57,9 @@ public class PostController {
 		return post;
 	}
 
+	@RequestMapping(path = "myapp/delete/post/{key}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deletePostById(@PathVariable("key") Long key) {
+		this.postService.deleteById(key);
+	}
+
 }

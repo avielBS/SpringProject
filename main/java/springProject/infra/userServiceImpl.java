@@ -39,5 +39,9 @@ public class userServiceImpl implements UserService {
 	public UserEntity newUser(UserEntity newUser) {
 		return this.userDao.create(newUser);
 	}
+	@Override
+	public void delete(String email) {
+		this.userDao.deleteByKey(email);
+	}
 
 }

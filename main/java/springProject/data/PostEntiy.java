@@ -10,7 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="POSTS")
+@Table(name = "POSTS")
 public class PostEntiy implements SpringDataUtil<Long> {
 
 	private String title;
@@ -33,7 +33,7 @@ public class PostEntiy implements SpringDataUtil<Long> {
 
 	@Override
 	@Id
-	@Column(name="ID")
+	@Column(name = "ID")
 	public Long getKey() {
 		return this.id;
 	}
