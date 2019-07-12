@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,20 +12,21 @@ import springProject.data.PostEntiy;
 import springProject.data.UserEntity;
 
 @Service
-public class PostServiceImpl implements PostService{
-	
+public class PostServiceImpl implements PostService {
+
 	private EnhancedPostDao<Long> postsDao;
 
 	@Autowired
 	public PostServiceImpl(EnhancedPostDao<Long> postsDao) {
 		this.postsDao = postsDao;
 	}
-	
+
 	@Override
-	public List<PostEntiy> getPostsFromUser(UserEntity user,int size,int page) {
-		//search in database for all user post
-		return  this.postsDao.readPostWithEmailContaining(user.getEmail(), size, page);
+	public List<PostEntiy> getPostsFromUser(String userEmail, int size, int page) {
+		// search in database for all user post
+		return this.postsDao.readPostWithEmailContaining(userEmail, size, page);
 	}
+
 	@Override
 	public List<PostEntiy> getAllPosts() {
 		return this.postsDao.readAll();
