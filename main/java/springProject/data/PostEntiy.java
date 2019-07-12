@@ -15,7 +15,7 @@ public class PostEntiy implements SpringDataUtil<Long> {
 
 	private String title;
 	private String author;
-	private Long userId;
+	private String userId;
 	private Date creationTime;
 	private String content;
 	private Long id;
@@ -23,7 +23,7 @@ public class PostEntiy implements SpringDataUtil<Long> {
 	public PostEntiy() {
 	}
 
-	public PostEntiy(String title, String author, Long userId, Date creationTime, String content) {
+	public PostEntiy(String title, String author, String userId, Date creationTime, String content) {
 		this.title = title;
 		this.author = author;
 		this.userId = userId;
@@ -59,11 +59,11 @@ public class PostEntiy implements SpringDataUtil<Long> {
 		this.author = author;
 	}
 
-	public Long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

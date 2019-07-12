@@ -91,7 +91,7 @@ public class MemoryPostDao implements EnhancedPostDao<Long> {
 	}
 
 	@Override
-	public List<PostEntiy> readMessageWithNameContaining(String text, int size, int page) {
+	public List<PostEntiy> readPostWithEmailContaining(String text, int size, int page) {
 		// TODO Auto-generated method stub
 		return null;
 	}

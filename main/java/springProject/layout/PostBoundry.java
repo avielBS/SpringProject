@@ -8,14 +8,14 @@ public class PostBoundry {
 
 	private String title;
 	private String author;
-	private Long userId;
+	private String userId;
 	private String content;
 	private Long id;
 
 	public PostBoundry() {
 	}
 
-	public PostBoundry(String title, String author, Long userId, String content) {
+	public PostBoundry(String title, String author, String userId, String content) {
 		this.title = title;
 		this.author = author;
 		this.userId = userId;
@@ -68,11 +68,11 @@ public class PostBoundry {
 		this.author = author;
 	}
 
-	public Long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUser(Long userId) {
+	public void setUser(String userId) {
 		this.userId = userId;
 	}
 

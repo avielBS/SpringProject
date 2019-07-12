@@ -90,9 +90,9 @@ public class RdbPostDao implements EnhancedPostDao<Long> {
 
 
 	@Override
-	public List<PostEntiy> readMessageWithNameContaining(String text, int size, int page) {
-		return null;
-		}
+	public List<PostEntiy> readPostWithEmailContaining(String userId, int size, int page) {
+		return this.postCrud.findAllByUserIdLike(userId, PageRequest.of(page, size));
+	}
 
 	@Override
 	public List<PostEntiy> readMessageAvaiable(Date fromDate, Date toDate, int size, int page) {

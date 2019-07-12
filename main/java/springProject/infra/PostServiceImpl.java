@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import springProject.dao.EnhancedPostDao;
-import springProject.dao.PostDao;
 import springProject.data.PostEntiy;
 import springProject.data.UserEntity;
 
@@ -24,9 +23,13 @@ public class PostServiceImpl implements PostService{
 	}
 	
 	@Override
-	public List<PostEntiy> getPosts(UserEntity user) {
+	public List<PostEntiy> getPostsFromUser(UserEntity user,int size,int page) {
 		//search in database for all user post
-		return  this.postsDao.readAll();
+		return  this.postsDao.readPostWithEmailContaining(user.getEmail(), size, page);
+	}
+	@Override
+	public List<PostEntiy> getAllPosts() {
+		return this.postsDao.readAll();
 	}
 
 	@Override
